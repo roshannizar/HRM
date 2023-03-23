@@ -1,0 +1,39 @@
+.blue {
+    background-color: #004085;
+    height: 745px;
+}
+.max-width {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+img {
+    width: 80%;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 15%;
+}
+.center {
+    text-align: center;
+}
+h6 {
+    font-weight: bold;
+    font-size: 200px;
+    color: whitesmoke;
+    margin-top: 25%;
+}
+.btn {
+    width: 100%;
+    background-color: #004085;
+}
+.forgot {
+    color: #004085;
+}
+.forgot:hover {
+    cursor: pointer;
+}
+.right {
+    text-align: right;
+}
+.form-check {
+    margin-bottom: 20px;
+}

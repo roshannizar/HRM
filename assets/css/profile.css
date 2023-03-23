@@ -1,0 +1,17 @@
+.make-center {
+    text-align: center;
+}
+.resize {
+    width: 50%;
+}
+.padding-around {
+    padding: 10px;
+    background-color: #0069d9;
+    color: whitesmoke;
+}
+.profile-form {
+    padding: 10px;
+}
+.more-weight {
+    font-weight: bold;
+}

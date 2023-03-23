@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <section class="banner1">
+        <header class="sticky">
+            <div class="container">
+                <div class="col-1">
+                    <h2 class="logo">Gen - Z Tech</h2>
+                </div>
+                <div class="col-6">
+                    <ul class="nav">
+
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#Admin">Admin</a></li>
+                        <li><a href="#">Facilities</a></li>
+                        <li><a href="#Help">Help</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <button class="btn" onclick="navigateToLogin()">Log-in</button>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </header>
+    </section>
+    <section class="banner">
+
+        <div class="col-6">
+            <div class="content">
+                <h1 class="heading">"Empowering <br>the future,<br> one innovation <br>at a time."<br></h1>
+
+                <div class="clearfix">
+
+                </div>
+                <br><br><br><br>
+
+
+            </div>
+
+        </div>
+        <div class="col-6">
+            <br>
+            <img src="./assets/images/side img.jpeg" class="im">
+        </div>
+        <div class="clearfix"></div>
+
+
+
+
+    </section>
+
+
+    <section>
+        <br><br><br>
+        <h1>
+            <center>NOTICE!</center>
+        </h1>
+        <br><br>
+
+        <center><img src="./assets/images/recnot.png" width="50%" height="50%"></center>
+
+
+    </section>
+    <br><br>
+
+
+    <section class="blue-sec">
+        <br><br><br><br>
+        <div class="container1">
+            <center>
+                <h2>Employee Recruitment Form</h2>
+                <br>
+                <form>
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                    <br>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <br>
+
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" name="phone" required>
+                    <br>
+
+                    <label for="position">Position Applied For</label>
+                    <select id="position" name="position" required>
+                        <option value="">Select a position</option>
+                        <option value="developer">Developer</option>
+                        <option value="designer">Designer</option>
+                        <option value="marketer">Marketer</option>
+                    </select>
+                    <br>
+
+                    <label for="resume">Resume</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    <br>
+                    <label for="coverletter">Cover Letter</label>
+                    <textarea id="coverletter" name="coverletter" required></textarea>
+                    <br>
+
+                    <button class="button1" type="submit">Submit</button>
+                </form>
+        </div>
+        </center>
+
+
+        <br><br>
+    </section>
+    <br><br>
+
+
+
+
+
+    <section>
+        <div class="container1">
+
+            <center>
+
+                <ul class="foot-menu">
+                    <li><a href="#"><strong>Social Media</strong></a></li>
+                    <li>
+                        <i class="fa fa-facebook sicon"></i>
+                        <i class="fa fa-instagram sicon"></i>
+                        <i class="fa fa-twitter sicon"></i>
+                    </li>
+            </center>
+            <hr>
+            <hr>
+            <p class="copyright">Copyright 2023 Design by Gen - Z Tech</p>
+            <br>
+            </ul>
+        </div>
+    </section>
+    </section>
+
+
+    <script>
+        function navigateToLogin() {
+            window.location.href = 'http://localhost/hrm/pages/authentication';
+        }
+    </script>
+
+</body>
+
+</html>

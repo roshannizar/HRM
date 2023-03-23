@@ -1,0 +1,32 @@
+.card-container {
+    margin:1px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow:1px 1px 1px 1px rgb(227 221 221);
+}
+.icon-badge {
+    font-size: 70px;
+}
+.slight-padding-left {
+    padding: 20px;
+}
+.slight-padding-right {
+    padding: 10px;
+    text-align: right;
+}
+.slight-padding-right p {
+    font-size: 30px;
+    font-weight: bold;
+}
+.user {
+    color: #37306B;
+}
+.clock {
+    color: #FF5151;
+}
+.credit-card {
+    color: #455D7A;
+}
+.ban {
+    color: crimson;
+}
