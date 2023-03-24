@@ -36,7 +36,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Settings / Position / Create</label>
+                <label class="navbar-brand">Employee / Create</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -57,24 +57,108 @@
                 <div class="card main-card">
                     <div class="row more-top-margin">
                         <div class="col-md-8">
-                            <h4>Create Position</h4>
+                            <h4>Create Employee</h4>
                         </div>
                         <div class="col-md-4">
-                            <a href="./" class="btn btn-primary btn-small">View Positions</a>
+                            <a href="./" class="btn btn-primary btn-small">View Employee</a>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="create-form">
-                        <form method="POST" action="../../core/services/position-service.php">
+                        <form method="POST" action="../../core/services/employee-service.php">
                             <div class="row extra-row">
                                 <div class="col-md-4">
-                                    <label for="pname">Position Name</label>
-                                    <input type="text" name="pname" class="form-control" required id="pname"
-                                        placeholder="Software Engineer">
+                                    <label for="fnameInput">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" required id="fnameInput"
+                                        placeholder="John">
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="mnameInput">Middle Name</label>
+                                    <input type="text" class="form-control" name="middlename" id="mnameInput"
+                                        placeholder="Rack">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="lnameInput">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" required id="lnameInput"
+                                        placeholder="Doe">
+                                </div>
+
+                                <div class="col-md-4 top-margin">
+                                    <label for="userSelect">User</label>
+                                    <select class="form-control" id="userSelect" name="userId">
+                                    <option value="0">-- Please Select --</option>
+                                    <?php
+                                            $result = getUsers($conn);
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['email'] ?>"><?php echo $row['email'] ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 top-margin">
+                                    <label for="departmentSelect">Department</label>
+                                    <select class="form-control" id="departmentSelect" name="department">
+                                    <option value="0">-- Please Select --</option>
+                                    <?php
+                                            $result = getDepartment($conn);
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 top-margin">
+                                    <label for="positionSelect">Position</label>
+                                    <select class="form-control" id="positionSelect" name="position">
+                                    <option value="0">-- Please Select --</option>
+                                    <?php
+                                            $result = getPosition($conn);
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 top-margin">
+                                    <label for="projectSelect">Project</label>
+                                    <select class="form-control" id="projectSelect" name="project">
+                                    <option value="0">-- Please Select --</option>
+                                    <?php
+                                            $result = getProjects($conn);
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                                        <?php
+                                            }
+                                            CloseCon($conn);
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="hrate">Hourly Rate</label>
+                                    <input type="number" class="form-control" name="hrate" required id="hrate"
+                                        placeholder="500">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="baseSalary">Base Salary</label>
+                                    <input type="number" class="form-control" name="baseSalary" required id="baseSalary"
+                                        placeholder="200000">
+                                </div>
+
                                 <div class="col-md-2 top-margin">
-                                    <input type="submit" class="btn btn-success" value="Save" name="btnSavePosition">
+                                    <input type="submit" class="btn btn-success" value="Save" name="btnSaveEmployee">
                                 </div>
                                 <div class="col-md-2 top-margin">
                                     <a href="./create.php" class="btn btn-danger">Reset</a>

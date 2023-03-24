@@ -117,7 +117,7 @@
             <div class="modal-body">
                 <label>Do you want update this project </label>
                 <label id="updateprId"></label>
-                <input type="text" name="updateprId" id="updatepIdText" hidden />
+                <input type="text" name="updateprId" id="updateprIdText" hidden />
                 <label>?</label>
             </div>
             <div class="modal-footer">

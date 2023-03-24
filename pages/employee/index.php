@@ -60,7 +60,7 @@
                             <h4>View Employee</h4>
                         </div>
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-primary btn-small">Create Employee</a>
+                            <a href="./create.php" class="btn btn-primary btn-small">Create Employee</a>
                         </div>
                     </div>
                 </div>
@@ -89,9 +89,9 @@
                                 <td><?php echo $row["firstname"];?></td>
                                 <td><?php echo $row["lastname"];?></td>
                                 <td><?php echo $row["lastname"];?></td>
-                                <td><?php echo $row["d.name"];?></td>
-                                <td><?php echo $row["p.project"];?></td>
-                                <td><?php echo $row["positionId"];?></td>
+                                <td><?php echo $row["departmentName"];?></td>
+                                <td><?php echo $row["projectName"];?></td>
+                                <td><?php echo $row["positionName"];?></td>
                                 <td>
                                     <div class="row center">
                                         <form method="POST" action="../../core/services/employee-services.php">
