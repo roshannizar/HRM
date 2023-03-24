@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 22, 2023 at 03:47 PM
+-- Generation Time: Mar 24, 2023 at 04:39 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -20,6 +20,51 @@ SET time_zone = "+00:00";
 --
 -- Database: `hrm`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE IF NOT EXISTS `department` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(65) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`id`, `name`) VALUES
+(2, 'Delivery');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+DROP TABLE IF EXISTS `employee`;
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userId` varchar(65) NOT NULL,
+  `firstname` varchar(65) NOT NULL,
+  `middlename` varchar(65) NOT NULL,
+  `lastname` varchar(65) NOT NULL,
+  `departmentId` int NOT NULL,
+  `positionId` int NOT NULL,
+  `projectId` int NOT NULL,
+  `hourlyRate` decimal(10,0) NOT NULL,
+  `baseSalary` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_UserId` (`userId`),
+  KEY `FK_Department` (`departmentId`),
+  KEY `FK_Position` (`positionId`),
+  KEY `FK_Project` (`projectId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -62,6 +107,40 @@ INSERT INTO `features` (`id`, `featurename`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE IF NOT EXISTS `positions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(65) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `name`) VALUES
+(2, 'Associate Technical Lead');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+DROP TABLE IF EXISTS `project`;
+CREATE TABLE IF NOT EXISTS `project` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `employeeId` int NOT NULL,
+  `name` varchar(65) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -87,7 +166,8 @@ INSERT INTO `user` (`firstname`, `lastname`, `email`, `password`, `role`, `conta
 ('Roshan', 'Nizar', 'rnizar@gmail.com', '$2y$10$soJ0uPla0Dhqrb7t34CCz.XtwkuQUqgoI7BHvwYUZz0EYy9UtoMSu', 0, 774185277, 0, 1),
 ('Paula', 'Lopez', 'lopex@mail.com', '$2y$10$RgOk3NvXRUcw5Hv6Td1M6u..yAdDeN03EPRUvWs6CmjZCg3kF9HpK', 1, 774185272, 1, 0),
 ('Hello', 'World', 'helloworld@gmail.com', '$2y$10$HLOU1NQnlxXG.7FTqy1isO9pPrg5wwsWWnPYi8qIP9mvRECJ0kA7K', 0, 777894561, 0, 0),
-('Admin', 'PC', 'admin@gmail.com', '$2y$10$x8.8VeWq2DET/oLYmU8D2.gSZyeHIIDOeSIxPVMVnSbRO7FIG3wfi', 0, 74185236, 0, 1);
+('Admin', 'PC', 'admin@gmail.com', '$2y$10$x8.8VeWq2DET/oLYmU8D2.gSZyeHIIDOeSIxPVMVnSbRO7FIG3wfi', 0, 74185236, 0, 1),
+('Shimra', 'Hanan', 'shimrahanan@gmail.com', '$2y$10$alJaH9B///lFc1ChewuYCO1qyH2aZM686LkUmyJvwMsC9t2uXFk4S', 0, 771234567, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `userpermission` (
   `settings` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_UserId` (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `userpermission`
@@ -127,7 +207,8 @@ CREATE TABLE IF NOT EXISTS `userpermission` (
 
 INSERT INTO `userpermission` (`id`, `userId`, `dashboard`, `employee`, `cemployee`, `uemployee`, `demployee`, `attendance`, `cattendance`, `uattendance`, `dattendance`, `payroll`, `cpayroll`, `upayroll`, `dpayroll`, `user`, `cuser`, `uuser`, `duser`, `settings`) VALUES
 (1, 'rnizar@gmail.com', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-(6, 'admin@gmail.com', 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1);
+(6, 'admin@gmail.com', 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1),
+(7, 'shimrahanan@gmail.com', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
