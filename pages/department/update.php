@@ -1,6 +1,6 @@
 <?php
     require '../../core/services/common-service.php';
-    require '../../core/services/dashboard-service.php';
+    require '../../core/services/department-service.php';
     require '../../core/services/user-permission.php';
 ?>
 <!DOCTYPE html>
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/department.css" />
+    <title>Department | Update</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
             <div class="button-section">
                 <?php
                     if($_SESSION["dashboard"] == 1) {
-                        echo '<a href="../dashboard" class="controls btn btn-primary">
+                        echo '<a href="../dashboard" class="controls btn">
                             <span class="fa fa-home"></span> &nbsp Dashboard
                         </a>';
                     }
@@ -60,26 +60,18 @@
                     }
 
                     if($_SESSION["settings"] == 1) {
-                        echo '<a href="../settings" class="controls btn">
+                        echo '<a href="../settings" class="controls btn btn-primary">
                             <span class="fa fa-cog"></span> &nbsp Settings
                         </a>';
                     }
                 ?>
             </div>
         </div>
-
         <div class="col-md-10 nav-content">
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Dashboard</label>
-                <?php
-                    if(!empty($_SESSION['change'])) {
-                        echo '<div class="alert alert-warning" role="alert">
-                            Please change your password, since you are a new user!
-                        </div>';
-                    }
-                ?>
+                <label class="navbar-brand">Settings / Department / Update</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -96,62 +88,54 @@
             </nav>
 
             <!-- page -->
-            <div class="row maintain-paddings">
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-users user icon-badge" aria-hidden="true"></span>
+            <div class="column maintain-paddings">
+                <div class="card main-card">
+                    <div class="row more-top-margin">
+                        <div class="col-md-8">
+                            <h4>Create Department</h4>
                         </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Employees</label>
-                            <p class="">20</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-clock clock icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Attendance</label>
-                            <p class="">12</p>
+                        <div class="col-md-4">
+                            <a href="./" class="btn btn-primary btn-small">View Department</a>
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="create-form">
 
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-credit-card credit-card icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Total Payroll</label>
-                            <p class="">Rs 22K</p>
-                        </div>
+                        <form method="POST" action="../../core/services/department-service.php">
+                            <?php
+                                $id = $_SESSION['departmentUpdateId'];
+                                $result = getDepartment($conn, $id);
+
+                                while($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <div class="row extra-row">
+                                <div class="col-md-4">
+                                    <label for="did">Department ID</label>
+                                    <input type="text" name="did" class="form-control" required id="did"
+                                        placeholder="Technology" value="<?php echo $row["id"];?>">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="dname">Department Name</label>
+                                    <input type="text" class="form-control" name="dname" required id="dname"
+                                        placeholder="Technology" value="<?php echo $row["name"];?>">
+                                </div>
+                                
+
+                                <div class="col-md-2 top-margin">
+                                    <input type="submit" class="btn btn-success" value="Update" name="btnUpdateDepartment">
+                                </div>
+                                <div class="col-md-2 top-margin">
+                                    <a href="./update.php" class="btn btn-danger">Reset</a>
+                                </div>
+                                <?php
+                                    }
+                                    CloseCon($conn);
+                                ?>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-ban ban icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Absent</label>
-                            <p class="">10</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-
             </div>
 
         </div>

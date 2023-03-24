@@ -45,14 +45,11 @@ body {
     .col-md-10 {
         max-width: 83.333333%;
     }
+    .col-md-12 {
+        max-width: 100%;
+    }
 }
 
-
-.btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
 nav {
     display: block;
 }
@@ -196,6 +193,66 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: .5rem;
 }
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button, input, select {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, input {
+    overflow: visible;
+}
+button, input {
+    overflow: visible;
+}
+button, input, select {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+table {
+    border-collapse: collapse;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+th {
+    text-align: inherit;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
 
 
 .side-content {
@@ -310,4 +367,25 @@ h1, h2, h3, h4, h5, h6 {
 img {
     vertical-align: middle;
     border-style: none;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-success {
+    background-color: green;
+    color: whitesmoke;
+}
+.btn-danger {
+    background-color: red;
+    color: whitesmoke;
+}
+.btn-warning {
+    background-color: darkorange;
+    color: whitesmoke;
+}
+.btn-secondary {
+    background-color: grey;
+    color: whitesmoke;
 }

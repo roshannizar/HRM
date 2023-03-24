@@ -1,7 +1,7 @@
 <?php
     require '../../core/services/common-service.php';
     require '../../core/services/user-permission.php';
-    require '../../core/services/employee-service.php';
+    require '../../core/services/department-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,13 +10,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/users.css" />
-    <title>Employee</title>
+    <link rel="stylesheet" href="../../assets/css/department.css" />
+    <title>Department</title>
 </head>
 
 <body>
@@ -38,7 +36,7 @@
 
                     if($_SESSION["employee"] == 1) {
 
-                        echo '<a href="../employee" class="controls btn btn-primary">
+                        echo '<a href="../employee" class="controls btn">
                             <span class="fa fa-users"></span> &nbsp Employee
                         </a>';
                     }
@@ -62,7 +60,7 @@
                     }
 
                     if($_SESSION["settings"] == 1) {
-                        echo '<a href="../settings" class="controls btn">
+                        echo '<a href="../settings" class="controls btn btn-primary">
                             <span class="fa fa-cog"></span> &nbsp Settings
                         </a>';
                     }
@@ -74,7 +72,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Employee</label>
+                <label class="navbar-brand">Settings / Department</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -95,10 +93,10 @@
                 <div class="card main-card">
                     <div class="row more-top-margin">
                         <div class="col-md-8">
-                            <h4>View Employee</h4>
+                            <h4>View Departments</h4>
                         </div>
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-primary btn-small">Create Employee</a>
+                            <a href="./create.php" class="btn btn-primary btn-small">Create Department</a>
                         </div>
                     </div>
                 </div>
@@ -107,38 +105,27 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>User Id</th>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Last Name</th>
-                                <th>Department</th>
-                                <th>Project</th>
-                                <th>Position</th>
+                                <th>ID</th>
+                                <th>Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $result = getAllEmployees($conn);
+                                $result = getAllDepartments($conn);
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>
-                                <td id="<?php echo $row["id"];?>"><?php echo $row["id"];?></td>
-                                <td><?php echo $row["firstname"];?></td>
-                                <td><?php echo $row["lastname"];?></td>
-                                <td><?php echo $row["lastname"];?></td>
-                                <td><?php echo $row["departmentId"];?></td>
-                                <td><?php echo $row["projectId"];?></td>
-                                <td><?php echo $row["positionId"];?></td>
+                                <td id="<?php echo $row['id'];?>"><?php echo $row["id"];?></td>
+                                <td><?php echo $row["name"];?></td>
                                 <td>
                                     <div class="row center">
-                                        <form method="POST" action="../../core/services/user-services.php">
-                                            <input type="button" data-toggle="modal" data-target="#deleteModal"
-                                                class="btn-small btn-r btn-d" name="btnDelete"
-                                                onclick="deleteUser(<?php echo 'name'.$count;?>)" value="Delete" />
-                                            <input type="button" data-toggle="modal" data-target="#updateModal"
-                                                class="btn-small btn-r btn-u" name="btnUpdate"
-                                                onclick="updateUser(<?php echo 'name'.$count;?>)" value="Update" />
+                                        <form method="POST" action="../../core/services/department-service.php">
+                                            <input type="button" class="btn-small btn-r btn-d" name="btnDelete"
+                                                onclick="deleteDepartment(<?php echo $row['id'];?>)" value="Delete" />
+                                            <input type="button" class="btn-small btn-r btn-u" name="btnUpdate"
+                                                id="btnUpdateD" onclick="updateDepartment(<?php echo $row['id'];?>)"
+                                                value="Update" />
                                         </form>
                                     </div>
                                 </td>
@@ -157,7 +144,59 @@
 
     </div>
 
+    <div id="updateDepartmentModal" class="modal">
+        <form method="POST" action="../../core/services/department-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeUpdateModal()">&times;</span>
+                <h3 class="modal-title" id="updateModalLabel">Update Department</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want update this department </label>
+                <label id="updatedId"></label>
+                <input type="text" name="updatedId" id="updatedIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning" name="btnUpdateD">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="deleteDepartmentModal" class="modal">
+        <form method="POST" action="../../core/services/department-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+                <h3 class="modal-title" id="deleteModalLabel">Delete Department</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want delete this department </label>
+                <label id="deletedId"></label>
+                <input type="text" name="deletedId" id="deletedIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger" name="btnDeleteDepartment">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script src="../../assets/js/dashboard.js"></script>
+    <script src="../../assets/js/department.js"></script>
 </body>
 
 </html>

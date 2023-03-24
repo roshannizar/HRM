@@ -119,6 +119,35 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-3">
+                    <div class="row card-container">
+                        <div class="col-md-6 slight-padding-left">
+                            <span class="fa fa-tasks tasks icon-badge" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 slight-padding-right">
+                            <label>Positions</label>
+                            <br />
+                            <br />
+                            <a href="/hrm/pages/position" class="btn btn-primary btn-smaller">GO</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="row card-container">
+                        <div class="col-md-6 slight-padding-left">
+                            <span class="fa fa-building building icon-badge" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 slight-padding-right">
+                            <label>Departments</label>
+                            <br />
+                            <br />
+                            <a href="/hrm/pages/department" class="btn btn-primary btn-smaller">GO</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php
     require '../../core/services/common-service.php';
-    require '../../core/services/dashboard-service.php';
-    require '../../core/services/user-permission.php';
+    require '../../core/services/position-service.php';
+    //require '../../core/services/user-permission.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="../../assets/css/department.css" />
+    <title>Position | Create</title>
 </head>
 
 <body>
@@ -25,11 +25,11 @@
             <br />
             <div class="break-line"></div>
 
-            <!-- Router Buttons and Permission -->
+            <!-- Router Buttons  -->
             <div class="button-section">
                 <?php
                     if($_SESSION["dashboard"] == 1) {
-                        echo '<a href="../dashboard" class="controls btn btn-primary">
+                        echo '<a href="../dashboard" class="controls btn">
                             <span class="fa fa-home"></span> &nbsp Dashboard
                         </a>';
                     }
@@ -52,7 +52,7 @@
                                 <span class="fa fa-credit-card"></span> &nbsp Payroll
                         </a>';
                     }
-
+ 
                     if($_SESSION["user"] == 1) {
                         echo '<a href="../users" class="controls btn">
                             <span class="fa fa-user-plus"></span> &nbsp Users
@@ -60,7 +60,7 @@
                     }
 
                     if($_SESSION["settings"] == 1) {
-                        echo '<a href="../settings" class="controls btn">
+                        echo '<a href="../settings" class="controls btn btn-primary">
                             <span class="fa fa-cog"></span> &nbsp Settings
                         </a>';
                     }
@@ -72,14 +72,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Dashboard</label>
-                <?php
-                    if(!empty($_SESSION['change'])) {
-                        echo '<div class="alert alert-warning" role="alert">
-                            Please change your password, since you are a new user!
-                        </div>';
-                    }
-                ?>
+                <label class="navbar-brand">Settings / Position / Create</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -96,62 +89,36 @@
             </nav>
 
             <!-- page -->
-            <div class="row maintain-paddings">
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-users user icon-badge" aria-hidden="true"></span>
+            <div class="column maintain-paddings">
+                <div class="card main-card">
+                    <div class="row more-top-margin">
+                        <div class="col-md-8">
+                            <h4>Create Position</h4>
                         </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Employees</label>
-                            <p class="">20</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-clock clock icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Attendance</label>
-                            <p class="">12</p>
+                        <div class="col-md-4">
+                            <a href="./" class="btn btn-primary btn-small">View Positions</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-credit-card credit-card icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Total Payroll</label>
-                            <p class="">Rs 22K</p>
-                        </div>
+                <div class="card">
+                    <div class="create-form">
+                        <form method="POST" action="../../core/services/position-service.php">
+                            <div class="row extra-row">
+                                <div class="col-md-4">
+                                    <label for="pname">Position Name</label>
+                                    <input type="text" name="pname" class="form-control" required id="pname"
+                                        placeholder="Software Engineer">
+                                </div>
+                                <div class="col-md-2 top-margin">
+                                    <input type="submit" class="btn btn-success" value="Save" name="btnSavePosition">
+                                </div>
+                                <div class="col-md-2 top-margin">
+                                    <a href="./create.php" class="btn btn-danger">Reset</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="row card-container">
-                        <div class="col-md-6 slight-padding-left">
-                            <span class="fa fa-ban ban icon-badge" aria-hidden="true"></span>
-                        </div>
-                        <div class="col-md-6 slight-padding-right">
-                            <label>Absent</label>
-                            <p class="">10</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                    
-                </div>
-
             </div>
 
         </div>
