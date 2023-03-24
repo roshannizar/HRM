@@ -30,3 +30,7 @@
 .ban {
     color: crimson;
 }
+.alert-warning {
+    color:orangered;
+    font-weight: bold;
+}

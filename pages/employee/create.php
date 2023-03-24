@@ -1,7 +1,7 @@
 <?php
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
-    require '../../core/services/department-service.php';
+    require '../../core/services/employee-service.php';
     //require '../../core/services/user-permission.php';
 ?>
 <!DOCTYPE html>
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/department.css" />
-    <title>Department | Create</title>
+    <link rel="stylesheet" href="../../assets/css/employee.css" />
+    <title>Employee | Create</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php echo getSideNav("settings"); ?>
+                <?php echo getSideNav("employee"); ?>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Settings / Department / Create</label>
+                <label class="navbar-brand">Settings / Position / Create</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -57,24 +57,24 @@
                 <div class="card main-card">
                     <div class="row more-top-margin">
                         <div class="col-md-8">
-                            <h4>Create Department</h4>
+                            <h4>Create Position</h4>
                         </div>
                         <div class="col-md-4">
-                            <a href="./" class="btn btn-primary btn-small">View Departments</a>
+                            <a href="./" class="btn btn-primary btn-small">View Positions</a>
                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="create-form">
-                        <form method="POST" action="../../core/services/department-service.php">
+                        <form method="POST" action="../../core/services/position-service.php">
                             <div class="row extra-row">
                                 <div class="col-md-4">
-                                    <label for="dname">Department Name</label>
-                                    <input type="text" name="dname" class="form-control" required id="dname"
-                                        placeholder="Technology">
+                                    <label for="pname">Position Name</label>
+                                    <input type="text" name="pname" class="form-control" required id="pname"
+                                        placeholder="Software Engineer">
                                 </div>
                                 <div class="col-md-2 top-margin">
-                                    <input type="submit" class="btn btn-success" value="Save" name="btnSaveDepartment">
+                                    <input type="submit" class="btn btn-success" value="Save" name="btnSavePosition">
                                 </div>
                                 <div class="col-md-2 top-margin">
                                     <a href="./create.php" class="btn btn-danger">Reset</a>

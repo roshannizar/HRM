@@ -1,5 +1,6 @@
 <?php
     require '../../core/services/common-service.php';
+    require '../../shared/components/sidenav.php';
     require '../../core/services/user-permission.php';
 ?>
 <!DOCTYPE html>
@@ -26,44 +27,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php
-                    if($_SESSION["dashboard"] == 1) {
-                        echo '<a href="../dashboard" class="controls btn">
-                            <span class="fa fa-home"></span> &nbsp Dashboard
-                        </a>';
-                    }
-
-                    if($_SESSION["employee"] == 1) {
-
-                        echo '<a href="../employee" class="controls btn">
-                            <span class="fa fa-users"></span> &nbsp Employee
-                        </a>';
-                    }
-
-                    if($_SESSION["attendance"] == 1) {
-                        echo '<a href="../attendance" class="controls btn btn-primary">
-                            <span class="fa fa-clock"></span> &nbsp Attendance
-                        </a>';
-                    }
-
-                    if($_SESSION["payroll"] == 1) {
-                        echo '<a href="../payroll" class="controls btn">
-                                <span class="fa fa-credit-card"></span> &nbsp Payroll
-                        </a>';
-                    }
-
-                    if($_SESSION["user"] == 1) {
-                        echo '<a href="../users" class="controls btn">
-                            <span class="fa fa-user-plus"></span> &nbsp Users
-                        </a>';
-                    }
-
-                    if($_SESSION["settings"] == 1) {
-                        echo '<a href="../settings" class="controls btn">
-                            <span class="fa fa-cog"></span> &nbsp Settings
-                        </a>';
-                    }
-                ?>
+                <?php getSideNav("attendance"); ?>
             </div>
         </div>
 

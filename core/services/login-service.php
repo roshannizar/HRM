@@ -52,6 +52,26 @@
                 $_SESSION['uuser'] = $permission['uuser'];
                 $_SESSION['duser'] = $permission['duser'];
 
+                $_SESSION['project'] = $permission['project'];
+                $_SESSION['cproject'] = $permission['cproject'];
+                $_SESSION['uproject'] = $permission['uproject'];
+                $_SESSION['dproject'] = $permission['dproject'];
+
+                $_SESSION['department'] = $permission['department'];
+                $_SESSION['cdepartment'] = $permission['cdepartment'];
+                $_SESSION['udepartment'] = $permission['udepartment'];
+                $_SESSION['ddepartment'] = $permission['ddepartment'];
+
+                $_SESSION['position'] = $permission['position'];
+                $_SESSION['cposition'] = $permission['cposition'];
+                $_SESSION['uposition'] = $permission['uposition'];
+                $_SESSION['dposition'] = $permission['dposition'];
+
+                $_SESSION['timesheet'] = $permission['timesheet'];
+                $_SESSION['ctimesheet'] = $permission['ctimesheet'];
+                $_SESSION['utimesheet'] = $permission['utimesheet'];
+                $_SESSION['dtimesheet'] = $permission['dtimesheet'];
+
                 $_SESSION['settings'] = $permission['settings'];
             }
             header('Location: /hrm/pages/dashboard');

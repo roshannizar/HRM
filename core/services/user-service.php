@@ -60,6 +60,22 @@
             $uuser = $_POST['uuser'];
             $duser = $_POST['duser'];
             $settings = $_POST['settings'];
+            $project = $_POST['project'];
+            $cproject = $_POST['cproject'];
+            $uproject = $_POST['uproject'];
+            $dproject = $_POST['dproject'];
+            $department = $_POST['department'];
+            $cdepartment = $_POST['cdepartment'];
+            $udepartment = $_POST['udepartment'];
+            $ddepartment = $_POST['ddepartment'];
+            $position = $_POST['position'];
+            $cposition = $_POST['cposition'];
+            $uposition = $_POST['uposition'];
+            $dposition = $_POST['dposition'];
+            $timesheet = $_POST['timesheet'];
+            $ctimesheet = $_POST['ctimesheet'];
+            $utimesheet = $_POST['utimesheet'];
+            $dtimesheet = $_POST['dtimesheet'];
 
             $conn = OpenCon();
 
@@ -67,11 +83,14 @@
             VALUES ('$firstName', '$lastName', '$email', '$password', '$role', '$contactNo', '$gender', '$changed')";
 
             $sql_userpermission = "INSERT INTO userpermission 
-            (userId, dashboard, employee, cemployee, uemployee, demployee, attendance, cattendance, 
-            uattendance, dattendance, payroll, cpayroll, upayroll, dpayroll, user, cuser, uuser, duser, settings) 
+            (userId, dashboard, employee, cemployee, uemployee, demployee, attendance, cattendance, uattendance, 
+            dattendance, payroll, cpayroll, upayroll, dpayroll, user, cuser, uuser, duser, settings, project, 
+            cproject, uproject, dproject, department, cdepartment, udepartment, ddepartment, position, cposition, 
+            uposition, dposition, timesheet, ctimesheet, utimesheet, dtimesheet) 
             VALUES('$email', '$dashboard', '$employee', '$cemployee', '$uemployee', '$demployee', '$attendance', '$cattendace', 
             '$uattedance', '$dattendance', '$payroll', '$cpayroll', '$upayroll', '$dpayroll', '$user', '$cuser', '$uuser', 
-            '$duser', '$settings')";
+            '$duser', '$settings', '$project', '$cproject', '$uproject', '$dproject', '$department', '$cdepartment', '$udepartment',
+            '$ddepartment', '$position', '$cposition', '$uposition', '$dposition', '$timesheet', '$ctimesheet', '$utimesheet', '$dtimesheet')";
         
             if ($conn->query($sql) && $conn->query($sql_userpermission)) {
                 echo "<script type='text/javascript'> alert('User created Successfully!') 
@@ -139,6 +158,22 @@
             $uuser = $_POST['uuser'];
             $duser = $_POST['duser'];
             $settings = $_POST['settings'];
+            $project = $_POST['project'];
+            $cproject = $_POST['cproject'];
+            $uproject = $_POST['uproject'];
+            $dproject = $_POST['dproject'];
+            $department = $_POST['department'];
+            $cdepartment = $_POST['cdepartment'];
+            $udepartment = $_POST['udepartment'];
+            $ddepartment = $_POST['ddepartment'];
+            $position = $_POST['position'];
+            $cposition = $_POST['cposition'];
+            $uposition = $_POST['uposition'];
+            $dposition = $_POST['dposition'];
+            $timesheet = $_POST['timesheet'];
+            $ctimesheet = $_POST['ctimesheet'];
+            $utimesheet = $_POST['utimesheet'];
+            $dtimesheet = $_POST['dtimesheet'];
 
             $conn = OpenCon();
             $sql = "UPDATE user SET firstname='$firstName', lastname='$lastName', role='$role', 
@@ -148,7 +183,11 @@
             cemployee='$cemployee',uemployee='$uemployee',demployee='$demployee',attendance='$attendance',
             cattendance='$cattendace',uattendance='$uattedance',dattendance='$dattendance',payroll='$payroll',
             cpayroll='$cpayroll',upayroll='$upayroll',dpayroll='$dpayroll',user='$user',cuser='$cuser',
-            uuser='$uuser',duser='$duser',settings='$settings' WHERE userId='$email'";
+            uuser='$uuser',duser='$duser',settings='$settings', project='$project', cproject='$cproject', 
+            uproject='$uproject', dproject = '$dproject', department='$department', cdepartment='$cdepartment',
+            ddepartment='$ddepartment', udepartment='$udepartment', position='$position', cposition='$cposition',
+            uposition='$uposition', dposition='$dposition', timesheet='$timesheet', ctimesheet='$ctimesheet',
+            utimesheet='$utimesheet', dtimesheet='$dtimesheet' WHERE userId='$email'";
             
             if ($conn->query($sql) && $conn->query($sql_permission)) {
                 unset($_SESSION['updateId']);

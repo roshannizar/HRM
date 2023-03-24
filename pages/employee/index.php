@@ -1,5 +1,6 @@
 <?php
     require '../../core/services/common-service.php';
+    require '../../shared/components/sidenav.php';
     require '../../core/services/user-permission.php';
     require '../../core/services/employee-service.php';
 ?>
@@ -10,12 +11,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/users.css" />
+    <link rel="stylesheet" href="../../assets/css/employee.css" />
     <title>Employee</title>
 </head>
 
@@ -29,44 +28,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php
-                    if($_SESSION["dashboard"] == 1) {
-                        echo '<a href="../dashboard" class="controls btn">
-                            <span class="fa fa-home"></span> &nbsp Dashboard
-                        </a>';
-                    }
-
-                    if($_SESSION["employee"] == 1) {
-
-                        echo '<a href="../employee" class="controls btn btn-primary">
-                            <span class="fa fa-users"></span> &nbsp Employee
-                        </a>';
-                    }
-
-                    if($_SESSION["attendance"] == 1) {
-                        echo '<a href="../attendance" class="controls btn">
-                            <span class="fa fa-clock"></span> &nbsp Attendance
-                        </a>';
-                    }
-
-                    if($_SESSION["payroll"] == 1) {
-                        echo '<a href="../payroll" class="controls btn">
-                                <span class="fa fa-credit-card"></span> &nbsp Payroll
-                        </a>';
-                    }
-
-                    if($_SESSION["user"] == 1) {
-                        echo '<a href="../users" class="controls btn">
-                            <span class="fa fa-user-plus"></span> &nbsp Users
-                        </a>';
-                    }
-
-                    if($_SESSION["settings"] == 1) {
-                        echo '<a href="../settings" class="controls btn">
-                            <span class="fa fa-cog"></span> &nbsp Settings
-                        </a>';
-                    }
-                ?>
+                <?php echo getSideNav("employee"); ?>
             </div>
         </div>
 
@@ -123,22 +85,21 @@
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>
-                                <td id="<?php echo $row["id"];?>"><?php echo $row["id"];?></td>
+                                <td id="<?php echo $row['id'];?>"><?php echo $row["id"];?></td>
                                 <td><?php echo $row["firstname"];?></td>
                                 <td><?php echo $row["lastname"];?></td>
                                 <td><?php echo $row["lastname"];?></td>
-                                <td><?php echo $row["departmentId"];?></td>
-                                <td><?php echo $row["projectId"];?></td>
+                                <td><?php echo $row["d.name"];?></td>
+                                <td><?php echo $row["p.project"];?></td>
                                 <td><?php echo $row["positionId"];?></td>
                                 <td>
                                     <div class="row center">
-                                        <form method="POST" action="../../core/services/user-services.php">
-                                            <input type="button" data-toggle="modal" data-target="#deleteModal"
+                                        <form method="POST" action="../../core/services/employee-services.php">
+                                            <input type="button" 
                                                 class="btn-small btn-r btn-d" name="btnDelete"
-                                                onclick="deleteUser(<?php echo 'name'.$count;?>)" value="Delete" />
-                                            <input type="button" data-toggle="modal" data-target="#updateModal"
-                                                class="btn-small btn-r btn-u" name="btnUpdate"
-                                                onclick="updateUser(<?php echo 'name'.$count;?>)" value="Update" />
+                                                onclick="deleteUser(<?php echo $row['id'];?>)" value="Delete" />
+                                            <input type="button" class="btn-small btn-r btn-u" name="btnUpdate"
+                                                onclick="updateUser(<?php echo $row['id']?>)" value="Update" />
                                         </form>
                                     </div>
                                 </td>
@@ -155,6 +116,57 @@
 
         </div>
 
+    </div>
+
+    <div id="updateEmployeeModal" class="modal">
+        <form method="POST" action="../../core/services/employee-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeUpdateModal()">&times;</span>
+                <h3 class="modal-title" id="updateModalLabel">Update Employee</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want update this employee </label>
+                <label id="updateeId"></label>
+                <input type="text" name="updateeId" id="updateeIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning" name="btnUpdateE">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="deleteEmployeeModal" class="modal">
+        <form method="POST" action="../../core/services/employee-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+                <h3 class="modal-title" id="deleteModalLabel">Delete Employee</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want delete this employee </label>
+                <label id="deleteeId"></label>
+                <input type="text" name="deleteeId" id="deleteeIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger" name="btnDeleteEmployee">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <script src="../../assets/js/dashboard.js"></script>
