@@ -1,0 +1,18 @@
+.parent {
+    background-color: grey;
+}
+.child {
+    text-align: center;
+    margin-top:15%;
+    margin-left: 35%;
+    width: 30%;
+}
+.top-margin {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+body {
+    background-image: url('/hrm/assets/images/blur.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

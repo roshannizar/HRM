@@ -55,10 +55,10 @@
             <div class="column maintain-paddings">
                 <div class="card main-card">
                     <div class="row more-top-margin">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <h4>View Payroll</h4>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <a href="#" class="btn btn-primary btn-small">Create Payroll</a>
                         </div>
                     </div>

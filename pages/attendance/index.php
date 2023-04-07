@@ -2,6 +2,7 @@
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
     require '../../core/services/user-permission.php';
+    require '../../core/services/attendance-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/users.css" />
+    <link rel="stylesheet" href="../../assets/css/attendance.css" />
     <title>Attendance</title>
 </head>
 
@@ -55,13 +56,47 @@
             <div class="column maintain-paddings">
                 <div class="card main-card">
                     <div class="row more-top-margin">
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <h4>View Attendance</h4>
                         </div>
-                        <div class="col-md-4">
-                            <a href="#" class="btn btn-primary btn-small">Create Attendance</a>
+                        <div class="col-md-5">
+                            <a href="./external" class="btn btn-primary btn-small">Create Attendance</a>
                         </div>
                     </div>
+                </div>
+
+                <div class="slight-top-margin">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee Name</th>
+                                <th>Log Type</th>
+                                <th>Date Time Log</th>
+                                <th>Date Updated</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $result = getAllAttendance($conn);
+                                while($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                            <tr>
+                                <td><?php echo $row["employeeno"];?></td>
+                                <td><?php echo $row["firstname"].' '.$row['lastname'];?></td>
+                                <td><?php echo getLogType($row["log_type"]);?></td>
+                                <td><?php echo $row["datetime_log"];?></td>
+                                <td><?php echo $row["date_updated"];?></td>
+                                <td><?php echo $row["duration"];?></td>
+                            </tr>
+                            <?php
+                                }
+                                CloseCon($conn);
+                            ?>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
 

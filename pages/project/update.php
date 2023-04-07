@@ -28,7 +28,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php echo getSideNav("settings"); ?>
+                <?php echo getSideNav("project"); ?>
             </div>
         </div>
         <div class="col-md-10 nav-content">

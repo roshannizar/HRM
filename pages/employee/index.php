@@ -70,6 +70,7 @@
                         <thead>
                             <tr>
                                 <th>User Id</th>
+                                <th>Employee No</th>
                                 <th>First Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
@@ -86,8 +87,9 @@
                             ?>
                             <tr>
                                 <td id="<?php echo $row['id'];?>"><?php echo $row["id"];?></td>
+                                <td><?php echo $row["employeeno"];?></td>
                                 <td><?php echo $row["firstname"];?></td>
-                                <td><?php echo $row["lastname"];?></td>
+                                <td><?php echo $row["middlename"] == null ? "N/A" : $row["middlename"];?></td>
                                 <td><?php echo $row["lastname"];?></td>
                                 <td><?php echo $row["departmentName"];?></td>
                                 <td><?php echo $row["projectName"];?></td>
@@ -97,9 +99,9 @@
                                         <form method="POST" action="../../core/services/employee-services.php">
                                             <input type="button" 
                                                 class="btn-small btn-r btn-d" name="btnDelete"
-                                                onclick="deleteUser(<?php echo $row['id'];?>)" value="Delete" />
+                                                onclick="deleteEmployee(<?php echo $row['id'];?>)" value="Delete" />
                                             <input type="button" class="btn-small btn-r btn-u" name="btnUpdate"
-                                                onclick="updateUser(<?php echo $row['id']?>)" value="Update" />
+                                                onclick="updateEmployee(<?php echo $row['id']?>)" value="Update" />
                                         </form>
                                     </div>
                                 </td>
@@ -170,6 +172,7 @@
     </div>
 
     <script src="../../assets/js/dashboard.js"></script>
+    <script src="../../assets/js/employee.js"></script>
 </body>
 
 </html>

@@ -11,8 +11,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
@@ -118,9 +118,8 @@
         </div>
 
     </div>
-
-    <!-- Delete Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    
+    <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="POST" action="../../core/services/user-service.php" class="modal-content">
@@ -142,10 +141,61 @@
                 </div>
             </form>
         </div>
+    </div> -->
+    
+    <!-- Delete Modal -->
+    <div id="deleteUserModal" class="modal">
+        <form method="POST" action="../../core/services/user-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+                <h3 class="modal-title" id="deleteModalLabel">Delete User</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want delete this project </label>
+                <label id="deleteUserId" name="deleteUserId"></label>
+                <input type="text" name="deleteUserId" id="deleteUserIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger" name="btnDelete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Update Modal -->
+    <div id="updateUserModal" class="modal">
+        <form method="POST" action="../../core/services/user-service.php" class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeUpdateModal()">&times;</span>
+                <h3 class="modal-title" id="updateModalLabel">Update User</h3>
+            </div>
+            <div class="modal-body">
+                <label>Do you want update this user </label>
+                <label id="updateUserId"></label>
+                <input type="text" name="updateUserId" id="updateUserIdText" hidden />
+                <label>?</label>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning" name="btnUpdateData">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <!-- Update Modal -->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+    <!-- <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form method="POST" action="../../core/services/user-service.php" class="modal-content">
@@ -167,19 +217,10 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <script src="../../assets/js/dashboard.js"></script>
     <script src="../../assets/js/user.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>
