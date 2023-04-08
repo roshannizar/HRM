@@ -33,8 +33,14 @@ body {
     .col-md-4 {
         max-width: 33.333333%;
     }
+    .col-md-5 {
+        max-width: 41.666667%;
+    }
     .col-md-6 {
         max-width: 50%;
+    }
+    .col-md-7 {
+        max-width: 58.333333%;
     }
     .col-md-8 {
         max-width: 66.666666%;
@@ -253,7 +259,37 @@ th {
     border-top: 1px solid #dee2e6;
 }
 
+.input-group-prepend {
+    margin-right: -1px;
+}
+.input-group-append, .input-group-prepend {
+    display: flex;
+}
 
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.input-group>.input-group-prepend>.input-group-text {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-check {
+    margin-left: 16px;
+}
 
 .side-content {
     background-color: #fff;

@@ -109,13 +109,35 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 top-margin">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-6">
 
+                <div class="col-md-6 top-margin">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
 
         </div>

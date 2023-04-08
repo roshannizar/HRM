@@ -11,8 +11,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
@@ -94,46 +92,43 @@
                                 <div class="col-md-4">
                                     <label for="fnameInput">First Name</label>
                                     <p class="more-weight"><?php echo $row["firstname"];?></p>
-                                    <input type="text" name="firstname" hidden class="form-control" required
+                                    <input type="text" name="firstname" style="display:none" class="form-control" required
                                         id="fnameInput" placeholder="John">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="lnameInput">Last Name</label>
                                     <p class="more-weight"><?php echo $row["lastname"];?></p>
-                                    <input type="text" class="form-control" hidden name="lastname" required
+                                    <input type="text" class="form-control" style="display:none" name="lastname" required
                                         id="lnameInput" placeholder="Doe">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="emailInput">Email Address</label>
                                     <p class="more-weight"><?php echo $row["email"];?></p>
-                                    <input type="email" class="form-control" hidden name="email" required
+                                    <input type="email" class="form-control" style="display:none" name="email" required
                                         id="emailInput" placeholder="jhondoe@gmail.com">
                                 </div>
-                                <div class="col-md-4 top-margin">
+                                <div class="col-md-4">
                                     <label for="roleSelect">Role</label>
                                     <p class="more-weight"><?php echo getRole($row["role"]);?></p>
                                 </div>
-                                <div class="col-md-4 top-margin">
+                                <div class="col-md-4">
                                     <label for="contactNoInput">Contact No</label>
                                     <div class="input-group">
-                                        <!-- <div class="input-group-prepend">
-                                            <div class="input-group-text">+94</div>
-                                        </div> -->
                                         <p class="more-weight">+94 <?php echo $row["contactno"];?></p>
-                                        <input type="text" name="contactno" hidden class="form-control"
+                                        <input type="text" name="contactno" style="display:none" class="form-control"
                                             id="contactNoInput" placeholder="771234567">
                                     </div>
                                 </div>
-                                <div class="col-md-4 top-margin">
+                                <div class="col-md-4">
                                     <label for="genderSelect">Gender</label>
                                     <p class="more-weight"><?php echo getGender($row["gender"]);?></p>
-                                    <select class="form-control" id="genderSelect" hidden name="gender">
+                                    <select class="form-control" id="genderSelect" style="display:none" name="gender">
                                         <option value="0">Male</option>
                                         <option value="1">Female</option>
                                     </select>
                                 </div>
 
-                                <div class="col-md-2 top-margin">
+                                <div class="col-md-2">
                                     <input type="submit" class="btn btn-primary" value="Edit Profile"
                                         name="updateProfile">
                                 </div>
@@ -155,15 +150,6 @@
         </div>
 
         <script src="../../assets/js/dashboard.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
 </body>
 
 </html>
