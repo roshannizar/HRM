@@ -35,12 +35,14 @@
         }
     } else if(isset($_POST['btnUpdateProject'])) {
         if(isset($_POST['prname']) && isset($_POST['prid'])) {
+
+            session_start();
+            $prid = $_SESSION['projectUpdateId'];
             $projectName = $_POST['prname'];
-            $did = $_POST['prid'];
 
             $conn = OpenCon();
 
-            $sql = "UPDATE project set name = '$projectName' WHERE id = '$did'";
+            $sql = "UPDATE project set name = '$projectName' WHERE id = '$prid'";
 
             if($conn->query($sql)) {
                 unset($_SESSION['projectUpdateId']);

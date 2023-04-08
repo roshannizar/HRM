@@ -39,11 +39,11 @@
 
         if($_SESSION["timesheet"] == 1) {
             if($active == "timesheet") {
-                echo '<a href="../project" class="controls btn btn-primary">
+                echo '<a href="../timesheet" class="controls btn btn-primary">
                     <span class="fa fa-calendar"></span> &nbsp Timesheet
                 </a>';
             } else {
-                echo '<a href="../project" class="controls btn">
+                echo '<a href="../timesheet" class="controls btn">
                     <span class="fa fa-calendar"></span> &nbsp Timesheet
                 </a>';
             }

@@ -34,13 +34,14 @@
                     window.location= '/hrm/pages/position/create.php' </script>";
         }
     } else if(isset($_POST['btnUpdatePosition'])) {
-        if(isset($_POST['pname']) && isset($_POST['pid'])) {
+        if(isset($_POST['pname'])) {
+            session_start();
+            $pid = $_SESSION['positionUpdateId'];
             $departmentName = $_POST['pname'];
-            $did = $_POST['pid'];
 
             $conn = OpenCon();
 
-            $sql = "UPDATE positions set name = '$departmentName' WHERE id = '$did'";
+            $sql = "UPDATE positions set name = '$departmentName' WHERE id = '$pid'";
 
             if($conn->query($sql)) {
                 unset($_SESSION['positionUpdateId']);
@@ -66,7 +67,7 @@
             $sql = "DELETE FROM positions WHERE id = '$did'";
 
             if($conn->query($sql)) {
-                echo "<script type='text/javascript'> alert('Department deleted successfully!') 
+                echo "<script type='text/javascript'> alert('Project deleted successfully!') 
                 window.location= '/hrm/pages/position/' </script>";
             } else {
             echo "<script type='text/javascript'> alert('Error occured while deleting!') 

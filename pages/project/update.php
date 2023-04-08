@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/department.css" />
+    <link rel="stylesheet" href="../../assets/css/project.css" />
     <title>Project | Update</title>
 </head>
 
@@ -74,11 +74,6 @@
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <div class="row extra-row">
-                                <div class="col-md-4">
-                                    <label for="pid">Project ID</label>
-                                    <input type="text" name="prid" class="form-control" required id="prid"
-                                        placeholder="Technology" value="<?php echo $row["id"];?>">
-                                </div>
                                 <div class="col-md-4">
                                     <label for="prname">Project Name</label>
                                     <input type="text" class="form-control" name="prname" required id="prname"
