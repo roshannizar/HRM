@@ -60,11 +60,11 @@
         header('Location: /hrm/pages/position/update.php');
     }  else if(isset($_POST['btnDeletePosition'])) {
         if(isset($_POST['deletepId'])) {
-            $did = $_POST['deletepId'];
+            $pid = $_POST['deletepId'];
 
             $conn = OpenCon();
 
-            $sql = "DELETE FROM positions WHERE id = '$did'";
+            $sql = "DELETE FROM positions WHERE id = '$pid'";
 
             if($conn->query($sql)) {
                 echo "<script type='text/javascript'> alert('Project deleted successfully!') 

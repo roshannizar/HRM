@@ -61,11 +61,11 @@
         header('Location: /hrm/pages/project/update.php');
     }  else if(isset($_POST['btnDeleteProject'])) {
         if(isset($_POST['deleteprId'])) {
-            $did = $_POST['deleteprId'];
+            $prid = $_POST['deleteprId'];
 
             $conn = OpenCon();
 
-            $sql = "DELETE FROM project WHERE id = '$did'";
+            $sql = "DELETE FROM project WHERE id = '$prid'";
 
             if($conn->query($sql)) {
                 echo "<script type='text/javascript'> alert('Project deleted successfully!') 

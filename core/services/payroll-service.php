@@ -86,11 +86,11 @@
         header('Location: /hrm/pages/payroll/update.php');
     }  else if(isset($_POST['btnDeletePayroll'])) {
         if(isset($_POST['deletepId'])) {
-            $did = $_POST['deletepId'];
+            $pid = $_POST['deletepId'];
 
             $conn = OpenCon();
 
-            $sql = "DELETE FROM payroll WHERE id = '$did'";
+            $sql = "DELETE FROM payroll WHERE id = '$pid'";
 
             if($conn->query($sql)) {
                 echo "<script type='text/javascript'> alert('Payroll deleted successfully!') 
