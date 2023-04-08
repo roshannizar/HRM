@@ -35,8 +35,10 @@
         }
     } else if(isset($_POST['btnUpdateDepartment'])) {
         if(isset($_POST['dname']) && isset($_POST['did'])) {
+            
+            session_start();
+            $did = $_SESSION['departmentUpdateId'];
             $departmentName = $_POST['dname'];
-            $did = $_POST['did'];
 
             $conn = OpenCon();
 

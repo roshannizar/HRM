@@ -75,11 +75,6 @@
                             ?>
                             <div class="row extra-row">
                                 <div class="col-md-4">
-                                    <label for="did">Department ID</label>
-                                    <input type="text" name="did" class="form-control" required id="did"
-                                        placeholder="Technology" value="<?php echo $row["id"];?>">
-                                </div>
-                                <div class="col-md-4">
                                     <label for="dname">Department Name</label>
                                     <input type="text" class="form-control" name="dname" required id="dname"
                                         placeholder="Technology" value="<?php echo $row["name"];?>">
