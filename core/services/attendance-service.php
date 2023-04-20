@@ -62,7 +62,7 @@
                             echo "<script type='text/javascript'> alert('Attendance Updated Successfully!') 
                                 window.location= '/hrm/pages/attendance/' </script>";
                         } else {
-                            echo "<script type='text/javascript'> alert('Error occured while submitting!') 
+                            echo "<script type='text/javascript'> alert('Error occured while updating!') 
                                 window.location= '/hrm/pages/attendance/external' </script>";
                         }
                         CloseCon($conn);
@@ -75,7 +75,7 @@
                     if($resultInsert->num_rows > 0) {
                         while($row = mysqli_fetch_assoc($resultInsert)) {
 
-                            $eId = $row["aid"];
+                            $eId = $row["id"];
                             $date = date("Y/m/d H:i:s");
                             $amorpm = date('A', strtotime($date));
                             $hourFormat = getLogTypeNum($amorpm);
@@ -87,7 +87,7 @@
                                     window.location= '/hrm/pages/attendance/' </script>";
                             } else {
                                 echo "<script type='text/javascript'> alert('Error occured while submitting!') 
-                                   window.location= '/hrm/pages/attendance/external' </script>";
+                                    window.location= '/hrm/pages/attendance/external' </script>";
                             }
                             CloseCon($conn);
                         }
