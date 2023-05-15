@@ -33,7 +33,7 @@
                 <div class="form-check">
                     <div class="row">
                         <div class="col-md-12 right">
-                            <label class="forgot">Forgot Password?</label>
+                            <!-- <label class="forgot">Forgot Password?</label> -->
                         </div>
                     </div>
                 </div>
