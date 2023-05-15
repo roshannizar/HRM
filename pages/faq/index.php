@@ -1,8 +1,8 @@
 <?php
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
-    require '../../core/services/project-service.php';
     require '../../core/services/user-permission.php';
+    require '../../core/services/faq-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/project.css" />
-    <title>Project | Update</title>
+    <link rel="stylesheet" href="../../assets/css/faq.css" />
+    <title>FAQ</title>
 </head>
 
 <body>
@@ -28,14 +28,15 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php echo getSideNav("project"); ?>
+                <?php echo getSideNav("settings"); ?>
             </div>
         </div>
+
         <div class="col-md-10 nav-content">
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Project / Update</label>
+                <label class="navbar-brand">Settings / FAQ</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -55,45 +56,35 @@
             <div class="column maintain-paddings">
                 <div class="card main-card">
                     <div class="row more-top-margin">
-                        <div class="col-md-8">
-                            <h4>Update Project</h4>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="./" class="btn btn-primary btn-small">View Project</a>
+                        <div class="col-md-12">
+                            <h4>View FAQ</h4>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="create-form">
 
-                        <form method="POST" action="../../core/services/project-service.php">
+                <div class="slight-top-margin">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                                $id = $_SESSION['projectUpdateId'];
-                                $result = getProject($conn, $id);
-
+                                $result = getAllFAQ($conn);
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
-                            <div class="row extra-row">
-                                <div class="col-md-4">
-                                    <label for="prname">Project Name</label>
-                                    <input type="text" class="form-control" name="prname" required id="prname"
-                                        placeholder="ABC Project" value="<?php echo $row["name"];?>">
-                                </div>
-                                
-
-                                <div class="col-md-2 top-margin">
-                                    <input type="submit" class="btn btn-success" value="Update" name="btnUpdateProject">
-                                </div>
-                                <div class="col-md-2 top-margin">
-                                    <a href="./update.php" class="btn btn-danger">Reset</a>
-                                </div>
-                                <?php
-                                    }
-                                    CloseCon($conn);
-                                ?>
-                            </div>
-                        </form>
-                    </div>
+                            <tr>
+                                <td><?php echo $row["question"];?></td>
+                                <td><?php echo $row["answer"];?></td>
+                            </tr>
+                            <?php
+                                }
+                                CloseCon($conn);
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
