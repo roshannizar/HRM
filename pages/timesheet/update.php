@@ -70,7 +70,7 @@
                             <?php
                                 $id = $_SESSION['timesheetUpdateId'];
                                 $result = getTimesheet($conn, $id);
-                                
+
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <div class="row extra-row">
@@ -118,7 +118,7 @@
                                 
 
                                 <div class="col-md-2 top-margin">
-                                    <input type="submit" class="btn btn-success" value="Update" name="btnUpdateProject">
+                                    <input type="submit" class="btn btn-success" value="Update" name="btnUpdateTimesheet">
                                 </div>
                                 <div class="col-md-2 top-margin">
                                     <a href="./update.php" class="btn btn-danger">Reset</a>

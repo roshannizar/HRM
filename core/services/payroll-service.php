@@ -10,6 +10,16 @@
         return $conn->query($query);
     }
 
+    
+    function getAuthAllPayroll($conn, $id) {
+        $query = "SELECT * from payroll p
+                INNER JOIN employee e on e.id=p.employeeid
+                INNER JOIN project pj on p.projectid=pj.id
+                INNER JOIN user u on u.email = e.userId
+                WHERE e.userId='$id'";
+        return $conn->query($query);
+    }
+
     function getPayroll($conn, $id) {
         $query = "SELECT * FROM payroll p
                 INNER JOIN employee e on e.id=p.employeeid

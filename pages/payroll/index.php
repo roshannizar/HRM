@@ -81,6 +81,10 @@
                         <tbody>
                             <?php
                                 $result = getAllPayroll($conn);
+                                if($_SESSION['role'] == 1) {
+                                    $id = $_SESSION['userId'];
+                                    $result = getAuthAllPayroll($conn, $id);
+                                }
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>

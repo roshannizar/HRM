@@ -84,6 +84,8 @@
 
             $sql = "UPDATE timesheet set projectId = '$projectId', taskId = '$taskId', description = '$description', hours = '$hour' WHERE id = '$tiid'";
 
+
+            
             if($conn->query($sql)) {
                 unset($_SESSION['timesheetUpdateId']);
                 echo "<script type='text/javascript'> alert('Timesheet updated successfully!') 

@@ -37,6 +37,15 @@
         return $conn->query($query);
     }
 
+    function getAuthAllAttendance($conn, $id) {
+        $query = "SELECT * FROM attendance a
+        LEFT JOIN employee e on a.employeeId = e.id 
+        INNER JOIN user u on u.email = e.userId
+        WHERE e.userId = '$id'
+        order by 1 desc";
+        return $conn->query($query);
+    }
+
     if(isset($_POST['btnSaveAttendance'])) {
         if(isset($_POST['eno'])) {
 
