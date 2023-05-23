@@ -4,7 +4,8 @@
     $conn = OpenCon();
 
     function getAllPayroll($conn) {
-        $query = "SELECT * from payroll p
+        $query = "SELECT p.id as id, e.firstname as firstname, e.lastname as lastname, pj.name as name, 
+        p.basesalary, p.allowance from payroll p
                 INNER JOIN employee e on e.id=p.employeeid
                 INNER JOIN project pj on p.projectid=pj.id";
         return $conn->query($query);
@@ -12,7 +13,7 @@
 
     
     function getAuthAllPayroll($conn, $id) {
-        $query = "SELECT * from payroll p
+        $query = "SELECT SELECT p.id as id, e.employeeNo as employeeNo, p.projectId as projectId, p.baseSalary, p.allowance from payroll p
                 INNER JOIN employee e on e.id=p.employeeid
                 INNER JOIN project pj on p.projectid=pj.id
                 INNER JOIN user u on u.email = e.userId
