@@ -33,7 +33,7 @@
                 <div class="form-check">
                     <div class="row">
                         <div class="col-md-12 right">
-                            <!-- <label class="forgot">Forgot Password?</label> -->
+                            <label class="forgot" onclick="openModal()">Forgot Password?</label>
                         </div>
                     </div>
                 </div>
@@ -41,6 +41,43 @@
             </form>
         </div>
     </div>
+
+    <!-- Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="../../core/services/settings-service.php" class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h3 class="modal-title" id="forgotPasswordModalLabel">Change Password</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <label for="npassword">New Password</label>
+                        <input type="password" class="form-control" name="npassword" required id="npassword"
+                            placeholder="New Password">
+                    </div>
+                    <div class="col-md-12 top-margin">
+                        <label for="cnpassword">Confirm New Password</label>
+                        <input type="password" class="form-control" name="cnpassword" required id="cnpassword"
+                            placeholder="Confirm New Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger" name="btnChangePassword">Change</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../assets/js/authentication.js"></script>
 </body>
 
 </html>
