@@ -110,6 +110,34 @@
                     </div>
                 </div>
 
+                <div class="col-md-3 top-margin">
+                    <div class="row card-container">
+                        <div class="col-md-6 slight-padding-left">
+                            <span class="fa fa-list list icon-badge" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 slight-padding-right">
+                            <label>Task</label>
+                            <br />
+                            <br />
+                            <a href="/hrm/pages/task" class="btn btn-primary btn-smaller">GO</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 top-margin">
+                    <div class="row card-container">
+                        <div class="col-md-6 slight-padding-left">
+                            <span class="fa fa-question question icon-badge" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-md-6 slight-padding-right">
+                            <label>FAQ</label>
+                            <br />
+                            <br />
+                            <a href="/hrm/pages/faq" class="btn btn-primary btn-smaller">GO</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -1,0 +1,43 @@
+.card {
+    padding: 10px;
+}
+
+.slight-top-margin {
+    margin-top: 10px;
+}
+
+.extra-row {
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.create-form {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.more-top-margin {
+    padding: 10px;
+}
+
+.top-margin {
+    margin-top: 20px;
+}
+
+.slight-right-margin {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.form-check {
+    margin-left: 16px;
+}
+
+.main-card {
+    background-color: #0069d9;
+    color: whitesmoke;
+}

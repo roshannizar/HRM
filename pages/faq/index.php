@@ -2,7 +2,7 @@
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
     require '../../core/services/user-permission.php';
-    require '../../core/services/attendance-service.php';
+    require '../../core/services/faq-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/attendance.css" />
-    <title>Attendance</title>
+    <link rel="stylesheet" href="../../assets/css/faq.css" />
+    <title>FAQ</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php getSideNav("attendance"); ?>
+                <?php echo getSideNav("settings"); ?>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Attendance</label>
+                <label class="navbar-brand">Settings / FAQ</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -56,11 +56,8 @@
             <div class="column maintain-paddings">
                 <div class="card main-card">
                     <div class="row more-top-margin">
-                        <div class="col-md-7">
-                            <h4>View Attendance</h4>
-                        </div>
-                        <div class="col-md-5">
-                            <a href="./external" class="btn btn-primary btn-small">Create Attendance</a>
+                        <div class="col-md-12">
+                            <h4>View FAQ</h4>
                         </div>
                     </div>
                 </div>
@@ -69,30 +66,18 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Employee Name</th>
-                                <th>Log Type</th>
-                                <th>Date Time Log</th>
-                                <th>Date Updated</th>
-                                <th>Duration</th>
+                                <th>Question</th>
+                                <th>Answer</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $result = getAllAttendance($conn);
-                                if($_SESSION["role"] == 1) {
-                                    $id = $_SESSION['userId'];
-                                    $result = getAuthAllAttendance($conn, $id);
-                                }
+                                $result = getAllFAQ($conn);
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>
-                                <td><?php echo $row["employeeno"];?></td>
-                                <td><?php echo $row["firstname"].' '.$row['lastname'];?></td>
-                                <td><?php echo getLogType($row["logtype"]);?></td>
-                                <td><?php echo $row["datetimelog"];?></td>
-                                <td><?php echo $row["dateupdatedlog"];?></td>
-                                <td><?php echo getDateDifference($row["datetimelog"], $row["dateupdatedlog"]); ?></td>
+                                <td><?php echo $row["question"];?></td>
+                                <td><?php echo $row["answer"];?></td>
                             </tr>
                             <?php
                                 }
@@ -100,7 +85,6 @@
                             ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
 

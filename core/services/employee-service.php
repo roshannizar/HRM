@@ -33,6 +33,16 @@
         return $conn->query($query);
     }
 
+    function getAuthAllEmployees($conn, $id) {
+        $query = "SELECT e.id, e.userId, e.employeeno, e.firstname, e.middlename, e.lastname, e.hourlyRate, e.baseSalary,d.name as 'departmentName', p.name as 'positionName', pr.name as 'projectName' 
+        from employee e 
+        LEFT JOIN department d on e.departmentId = d.id 
+        LEFT JOIN positions p on e.positionId = p.id 
+        LEFT JOIN project pr on e.projectId = pr.id
+        WHERE e.userId ='$id'";
+        return $conn->query($query);
+    }
+
     function getEmployee($conn, $id) {
         $query = "SELECT e.id, e.userId, e.employeeno, e.firstname, e.middlename, e.lastname, e.hourlyRate, e.baseSalary, 
         e.departmentId, e.projectId, e.positionId

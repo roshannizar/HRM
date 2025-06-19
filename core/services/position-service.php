@@ -37,11 +37,11 @@
         if(isset($_POST['pname'])) {
             session_start();
             $pid = $_SESSION['positionUpdateId'];
-            $departmentName = $_POST['pname'];
+            $positionName = $_POST['pname'];
 
             $conn = OpenCon();
 
-            $sql = "UPDATE positions set name = '$departmentName' WHERE id = '$pid'";
+            $sql = "UPDATE positions set name = '$positionName' WHERE id = '$pid'";
 
             if($conn->query($sql)) {
                 unset($_SESSION['positionUpdateId']);

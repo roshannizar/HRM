@@ -1,8 +1,8 @@
 <?php
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
+    require '../../core/services/task-service.php';
     require '../../core/services/user-permission.php';
-    require '../../core/services/attendance-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/attendance.css" />
-    <title>Attendance</title>
+    <link rel="stylesheet" href="../../assets/css/task.css" />
+    <title>Task | Update</title>
 </head>
 
 <body>
@@ -28,15 +28,14 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php getSideNav("attendance"); ?>
+                <?php echo getSideNav("settings"); ?>
             </div>
         </div>
-
         <div class="col-md-10 nav-content">
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Attendance</label>
+                <label class="navbar-brand">Settings / Task / Update</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -56,51 +55,45 @@
             <div class="column maintain-paddings">
                 <div class="card main-card">
                     <div class="row more-top-margin">
-                        <div class="col-md-7">
-                            <h4>View Attendance</h4>
+                        <div class="col-md-8">
+                            <h4>Update Task</h4>
                         </div>
-                        <div class="col-md-5">
-                            <a href="./external" class="btn btn-primary btn-small">Create Attendance</a>
+                        <div class="col-md-4">
+                            <a href="./" class="btn btn-primary btn-small">View Task</a>
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="create-form">
 
-                <div class="slight-top-margin">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Employee Name</th>
-                                <th>Log Type</th>
-                                <th>Date Time Log</th>
-                                <th>Date Updated</th>
-                                <th>Duration</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        <form method="POST" action="../../core/services/task-service.php">
                             <?php
-                                $result = getAllAttendance($conn);
-                                if($_SESSION["role"] == 1) {
-                                    $id = $_SESSION['userId'];
-                                    $result = getAuthAllAttendance($conn, $id);
-                                }
+                                $id = $_SESSION['taskUpdateId'];
+                                $result = getTask($conn, $id);
+
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
-                            <tr>
-                                <td><?php echo $row["employeeno"];?></td>
-                                <td><?php echo $row["firstname"].' '.$row['lastname'];?></td>
-                                <td><?php echo getLogType($row["logtype"]);?></td>
-                                <td><?php echo $row["datetimelog"];?></td>
-                                <td><?php echo $row["dateupdatedlog"];?></td>
-                                <td><?php echo getDateDifference($row["datetimelog"], $row["dateupdatedlog"]); ?></td>
-                            </tr>
-                            <?php
-                                }
-                                CloseCon($conn);
-                            ?>
-                        </tbody>
-                    </table>
+                            <div class="row extra-row">
+                                <div class="col-md-4">
+                                    <label for="tname">Task Name</label>
+                                    <input type="text" class="form-control" name="tname" required id="tname"
+                                        placeholder="Daily Scrum" value="<?php echo $row["name"];?>">
+                                </div>
+                                
 
+                                <div class="col-md-2 top-margin">
+                                    <input type="submit" class="btn btn-success" value="Update" name="btnUpdateTask">
+                                </div>
+                                <div class="col-md-2 top-margin">
+                                    <a href="./update.php" class="btn btn-danger">Reset</a>
+                                </div>
+                                <?php
+                                    }
+                                    CloseCon($conn);
+                                ?>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 

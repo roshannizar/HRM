@@ -83,6 +83,10 @@
                         <tbody>
                             <?php
                                 $result = getAllEmployees($conn);
+                                if($_SESSION['role'] == 1) {
+                                    $id = $_SESSION['userId'];
+                                    $result = getAuthAllEmployees($conn, $id);
+                                }
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>

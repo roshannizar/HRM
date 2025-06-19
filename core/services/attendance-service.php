@@ -37,6 +37,15 @@
         return $conn->query($query);
     }
 
+    function getAuthAllAttendance($conn, $id) {
+        $query = "SELECT * FROM attendance a
+        LEFT JOIN employee e on a.employeeId = e.id 
+        INNER JOIN user u on u.email = e.userId
+        WHERE e.userId = '$id'
+        order by 1 desc";
+        return $conn->query($query);
+    }
+
     if(isset($_POST['btnSaveAttendance'])) {
         if(isset($_POST['eno'])) {
 
@@ -62,7 +71,7 @@
                             echo "<script type='text/javascript'> alert('Attendance Updated Successfully!') 
                                 window.location= '/hrm/pages/attendance/' </script>";
                         } else {
-                            echo "<script type='text/javascript'> alert('Error occured while submitting!') 
+                            echo "<script type='text/javascript'> alert('Error occured while updating!') 
                                 window.location= '/hrm/pages/attendance/external' </script>";
                         }
                         CloseCon($conn);
@@ -75,7 +84,7 @@
                     if($resultInsert->num_rows > 0) {
                         while($row = mysqli_fetch_assoc($resultInsert)) {
 
-                            $eId = $row["aid"];
+                            $eId = $row["id"];
                             $date = date("Y/m/d H:i:s");
                             $amorpm = date('A', strtotime($date));
                             $hourFormat = getLogTypeNum($amorpm);
@@ -87,7 +96,7 @@
                                     window.location= '/hrm/pages/attendance/' </script>";
                             } else {
                                 echo "<script type='text/javascript'> alert('Error occured while submitting!') 
-                                   window.location= '/hrm/pages/attendance/external' </script>";
+                                    window.location= '/hrm/pages/attendance/external' </script>";
                             }
                             CloseCon($conn);
                         }

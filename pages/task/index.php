@@ -2,7 +2,7 @@
     require '../../core/services/common-service.php';
     require '../../shared/components/sidenav.php';
     require '../../core/services/user-permission.php';
-    require '../../core/services/timesheet-service.php';
+    require '../../core/services/task-service.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="../../assets/css/common.css" />
-    <link rel="stylesheet" href="../../assets/css/timesheet.css" />
-    <title>Timesheet</title>
+    <link rel="stylesheet" href="../../assets/css/task.css" />
+    <title>Tasks</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
             <!-- Router Buttons and Permission -->
             <div class="button-section">
-                <?php echo getSideNav("timesheet"); ?>
+                <?php echo getSideNav("settings"); ?>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
             <!-- Navbar -->
             <nav class="navbar">
-                <label class="navbar-brand">Timesheet</label>
+                <label class="navbar-brand">Settings / Task</label>
                 <div class="dropdown">
                     <button class="dropbtn" onclick="showDropDown()">
                         Welcome <?php echo getUserName();?> &nbsp
@@ -57,10 +57,10 @@
                 <div class="card main-card">
                     <div class="row more-top-margin">
                         <div class="col-md-8">
-                            <h4>View Timesheet</h4>
+                            <h4>View Task</h4>
                         </div>
                         <div class="col-md-4">
-                            <a href="./create.php" class="btn btn-primary btn-small">Create Timesheet</a>
+                            <a href="./create.php" class="btn btn-primary btn-small">Create Task</a>
                         </div>
                     </div>
                 </div>
@@ -70,33 +70,25 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Employee</th>
-                                <th>Project</th>
-                                <th>Task</th>
-                                <th>Description</th>
-                                <th>Hours</th>
+                                <th>Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $result = getAllTimesheet($conn);
+                                $result = getAllTasks($conn);
                                 while($row = mysqli_fetch_assoc($result)) {
                             ?>
                             <tr>
                                 <td id="<?php echo $row['id'];?>"><?php echo $row["id"];?></td>
-                                <td><?php echo $row["employeeNo"];?></td>
-                                <td><?php echo $row["projectName"];?></td>
-                                <td><?php echo $row["taskName"];?></td>
-                                <td><?php echo $row["description"];?></td>
-                                <td><?php echo $row["hours"];?></td>
+                                <td><?php echo $row["name"];?></td>
                                 <td>
                                     <div class="row center">
-                                        <form method="POST" action="../../core/services/timesheet-service.php">
+                                        <form method="POST" action="../../core/services/task-service.php">
                                             <input type="button" class="btn-small btn-r btn-d" name="btnDelete"
-                                                onclick="deleteTimesheet(<?php echo $row['id'];?>)" value="Delete" />
+                                                onclick="deleteTask(<?php echo $row['id'];?>)" value="Delete" />
                                             <input type="button" class="btn-small btn-r btn-u" name="btnUpdate"
-                                                id="btnUpdateT" onclick="updateTimesheet(<?php echo $row['id'];?>)"
+                                                id="btnUpdateT" onclick="updateTask(<?php echo $row['id'];?>)"
                                                 value="Update" />
                                         </form>
                                     </div>
@@ -116,16 +108,16 @@
 
     </div>
 
-    <div id="updateTimesheetModal" class="modal">
-        <form method="POST" action="../../core/services/timesheet-service.php" class="modal-content">
+    <div id="updateTaskModal" class="modal">
+        <form method="POST" action="../../core/services/task-service.php" class="modal-content">
             <div class="modal-header">
                 <span class="close" onclick="closeUpdateModal()">&times;</span>
-                <h3 class="modal-title" id="updateModalLabel">Update Timesheet</h3>
+                <h3 class="modal-title" id="updateModalLabel">Update Task</h3>
             </div>
             <div class="modal-body">
-                <label>Do you want update this timesheet </label>
-                <label id="updatetiId"></label>
-                <input type="text" name="updatetiId" id="updatetiIdText" hidden />
+                <label>Do you want update this Task </label>
+                <label id="updatetId"></label>
+                <input type="text" name="updatetId" id="updatetIdText" hidden />
                 <label>?</label>
             </div>
             <div class="modal-footer">
@@ -134,7 +126,7 @@
                         <button type="button" class="btn btn-secondary" onclick="closeUpdateModal()">Close</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-warning" name="btnUpdateTi">Update</button>
+                        <button type="submit" class="btn btn-warning" name="btnUpdateT">Update</button>
                     </div>
                 </div>
             </div>
@@ -142,16 +134,16 @@
     </div>
 
 
-    <div id="deleteTimesheetModal" class="modal">
-        <form method="POST" action="../../core/services/timesheet-service.php" class="modal-content">
+    <div id="deleteTaskModal" class="modal">
+        <form method="POST" action="../../core/services/task-service.php" class="modal-content">
             <div class="modal-header">
                 <span class="close" onclick="closeDeleteModal()">&times;</span>
-                <h3 class="modal-title" id="deleteModalLabel">Delete Timesheet</h3>
+                <h3 class="modal-title" id="deleteModalLabel">Delete Task</h3>
             </div>
             <div class="modal-body">
-                <label>Do you want delete this timesheet </label>
-                <label id="deletetiId"></label>
-                <input type="text" name="deletetiId" id="deletetiIdText" hidden />
+                <label>Do you want delete this Task </label>
+                <label id="deletetId"></label>
+                <input type="text" name="deletetId" id="deletetIdText" hidden />
                 <label>?</label>
             </div>
             <div class="modal-footer">
@@ -160,7 +152,7 @@
                         <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Close</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-danger" name="btnDeleteTimesheet">Delete</button>
+                        <button type="submit" class="btn btn-danger" name="btnDeleteTask">Delete</button>
                     </div>
                 </div>
             </div>
@@ -168,7 +160,7 @@
     </div>
 
     <script src="../../assets/js/dashboard.js"></script>
-    <script src="../../assets/js/timesheet.js"></script>
+    <script src="../../assets/js/task.js"></script>
 </body>
 
 </html>
