@@ -12,7 +12,7 @@
             $password = password_hash($newPassword, PASSWORD_DEFAULT);
 
             $conn = OpenCon();
-            $sql = "UPDATE user SET password = '$password', changed = 1 WHERE email='$email'";
+            $sql = "UPDATE user SET password = '$password', changed = 1 WHERE email='rnizar@gmail.com'";
 
             if($conn->query($sql)) {
                 $_SESSION['change'] = false;
